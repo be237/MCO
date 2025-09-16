@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Maison Fonfort - Électronique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 400px;
+      color: #fff;
+      position: relative;
+      width: auto;
+      max-width: 90%;
+
+    }
+
+    .popup-content img {
+      max-width: 100%;
+      max-height: 60vh;
+      height: auto;
+      width: auto;
+      border-radius: 8px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .popup-content a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+    }
+
+    .popup-content a:hover {
+      background: #fff;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f2027;
+      color: #f0f0f0;
+      padding-bottom: 80px
+    }
+
+    header {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5)
+    }
+
+    .navbar {
+      background: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: relative;
+      z-index: 100
+    }
+
+    .navbar .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #00ffff;
+      letter-spacing: 1px
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      transition: max-height .4s ease, opacity .4s ease
+    }
+
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: .3s;
+      font-weight: 600
+    }
+
+    .navbar ul li a:hover {
+      background: #00ffff;
+      color: #000
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 101
+    }
+
+    .menu-toggle span {
+      background: #fff;
+      height: 3px;
+      width: 25px;
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: .4s
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px)
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px)
+    }
+
+    @media(max-width:768px) {
+      .navbar ul {
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #111;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0
+      }
+
+      .navbar ul.active {
+        max-height: 400px;
+        opacity: 1
+      }
+
+      .menu-toggle {
+        display: flex
+      }
+
+      .navbar ul li {
+        text-align: center
+      }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.1)
+    }
+
+    .hero h2 {
+      font-size: 2em;
+      margin-bottom: 10px
+    }
+
+    .filter {
+      margin: 30px auto;
+      text-align: center
+    }
+
+    .filter select {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 20px
+    }
+
+    .product {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 255, 255, .2);
+      transition: .3s
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 16px rgba(0, 255, 255, .4)
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover
+    }
+
+    .product-info {
+      padding: 15px
+    }
+
+    .product-info h3 {
+      margin-bottom: 10px;
+      font-size: 1.1em
+    }
+
+    .product-info p {
+      margin: 5px 0
+    }
+
+    .product-info a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: .3s
+    }
+
+    .product-info a:hover {
+      background: #fff
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5)
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><a href="Home.html" style="text-decoration: none; color: white;">MAISON CONFORT D'ORIGINE</a></h1>
+    <p>Électronique de qualité pour tous vos besoins</p>
+  </header>
+  <div class="navbar">
+    <div class="logo">🔌 Électronique</div>
+    <div class="menu-toggle"
+      onclick="this.classList.toggle('active');document.querySelector('.navbar ul').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
+    <ul>
+      <li><a href="electro.html">Électroménager</a></li>
+      <li><a href="ammeublement.html">Ameublement</a></li>
+      <li><a href="electronik.html">Électronique</a></li>
+      <li><a href="info.html">Informatique</a></li>
+      <li><a href="materiel de bureau.html">Matériel de bureau</a></li>
+      <li><a href="papeterie.html">Papeterie</a></li>
+    </ul>
+  </div>
+  <div class="hero">
+    <h2>Nos Produits Électroniques</h2>
+    <p>Performance, innovation et fiabilité</p>
+  </div>
+  <div class="filter">
+    <label for="filtre"><strong>Filtrer par :</strong></label>
+    <select id="filtre">
+      <option value="tous">Tous les produits</option>
+      <option value="téléviseur">Téléviseur</option>
+      <option value="smartphone">Smartphone</option>
+      <option value="ordinateur">Ordinateur</option>
+      <option value="accessoire">Accessoire</option>
+      <option value="prix-100">Moins de 100 000 FCFA</option>
+      <option value="prix-200">Moins de 200 000 FCFA</option>
+    </select>
+  </div>
+  <div class="products">
+    <div class="product"><img src="img/1-1200x1200-1-280x280.jpg">
+      <div class="product-info">
+        <h3>Téléviseur LED 42"</h3>
+        <p>Full HD, HDMI, USB.</p>
+        <p><strong>Prix :</strong> 160 000 FCFA</p><a href="https://wa.me/23799008396?text=TV+160000">🛒 Commander</a>
+      </div>
+    </div>
+    <div class="product"><img
+        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80">
+      <div class="product-info">
+        <h3>Smartphone Android</h3>
+        <p>64Go, 4Go RAM.</p>
+        <p><strong>Prix :</strong> 95 000 FCFA</p><a href="https://wa.me/23799008396?text=Smartphone+95000">🛒
+          Commander</a>
+      </div>
+    </div>
+    <div class="product"><img src="img/dell-latitude-5310-core-i7-gen-10-16go-ram-256go-ssd-linux.jpg">
+      <div class="product-info">
+        <h3>Ordinateur portable</h3>
+        <p>Intel Core i5, SSD.</p>
+        <p><strong>Prix :</strong> 210 000 FCFA</p><a href="https://wa.me/23799008396?text=Ordinateur+210000">🛒
+          Commander</a>
+      </div>
+    </div>
+    <div class="product"><img src="img/product-10.jpg">
+      <div class="product-info">
+        <h3>Casque Bluetooth</h3>
+        <p>Autonomie 20h.</p>
+        <p><strong>Prix :</strong> 35 000 FCFA</p><a href="https://wa.me/23799008396?text=Casque+35000">🛒 Commander</a>
+      </div>
+    </div>
+    <div class="product"><img src="/img/bbt.webp">
+      <div class="product-info">
+        <h3>Enceinte portable</h3>
+        <p>Bluetooth, étanche.</p>
+        <p><strong>Prix :</strong> 55 000 FCFA</p><a href="https://wa.me/23799008396?text=Enceinte+55000">🛒
+          Commander</a>
+      </div>
+    </div>
+    <div class="product"><img src="img/chargeur pc1.jpg">
+      <div class="product-info">
+        <h3>Chargeur rapide</h3>
+        <p>USB-C, 25W.</p>
+        <p><strong>Prix :</strong> 15 000 FCFA</p><a href="https://wa.me/23799008396?text=Chargeur+15000">🛒
+          Commander</a>
+      </div>
+    </div>
+    <div class="product"><img src="img/mix.png">
+      <div class="product-info">
+        <h3>Mixeur</h3>
+        <p>32 Pistes Full option</p>
+        <p><strong>Prix :</strong> 650 000 FCFA</p><a href="https://wa.me/23799008396?text=Clé+USB+10000">🛒
+          Commander</a>
+      </div>
+    </div>
+    <div class="product"><img src="img/support-telephone-rotatif-motorise__95850.jpg">
+      <div class="product-info">
+        <h3>Support téléphone</h3>
+        <p>Réglable, stable.</p>
+        <p><strong>Prix :</strong> 15 000 FCFA</p><a href="https://wa.me/23799008396?text=Support+8000">🛒 Commander</a>
+      </div>
+    </div>
+    <div class="product"><img src="img/OIP (9).webp">
+      <div class="product-info">
+        <h3>Adaptateur HDMI</h3>
+        <p>Compatible 4K, compact.</p>
+        <p><strong>Prix :</strong> 22 000 FCFA</p><a href="https://wa.me/23799008396?text=Adaptateur+HDMI+12000">🛒
+          Commander</a>
+      </div>
+    </div>
+    <div class="product">
+      <img src="img/vga to hdmi.webp">
+      <div class="product-info">
+        <h3>Adaptateur HDMI</h3>
+        <p>Compatible 4K, compact.</p>
+        <p><strong>Prix :</strong> 12 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Adaptateur+HDMI+12000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/MICRO.jpg">
+      <div class="product-info">
+        <h3>Micro Professionnel</h3>
+        <p>HautePerformance</p>
+        <p><strong>Prix :</strong> &nbsp;85 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Clé+USB+64Go+10000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/R (5).jpeg">
+      <div class="product-info">
+        <h3>Casque Bluetooth</h3>
+        <p>Autonomie 20h, micro intégré.</p>
+        <p><strong>Prix :</strong> 35 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Casque+Bluetooth+35000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/Bo-tier-Smart-TV-Android-11-4-Go-32-Go-S905tage-4K-WiFi-6-lecteur-multim.jpg_.webp">
+      <div class="product-info">
+        <h3>Boîtier Android TV</h3>
+        <p>4K, Wi-Fi, télécommande incluse.</p>
+        <p><strong>Prix :</strong> 48 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Boîtier+Android+TV+48000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img
+        src="img/mini-haut-parleur-tg-337-bluetooth-1200-2000mah-rechargeable-carte-enfichable-caisson-de-basses.webp">
+      <div class="product-info">
+        <h3>Mini haut-parleur Bluetooth</h3>
+        <p>Rechargeable, son clair.</p>
+        <p><strong>Prix :</strong> 12 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Mini+haut-parleur+Bluetooth+12000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/71c6VcE1DbL._AC_SL1500_.jpg">
+      <div class="product-info">
+        <h3>Webcam Full HD</h3>
+        <p>1080p, micro intégré.</p>
+        <p><strong>Prix :</strong> 22 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Webcam+Full+HD+22000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/OIP (10).webp">
+      <div class="product-info">
+        <h3>Mini drone caméra HD</h3>
+        <p>Contrôle via smartphone.</p>
+        <p><strong>Prix :</strong> 65 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Mini+drone+caméra+HD+65000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/61BgvQQ5k0L._AC_SL1500_.jpg">
+      <div class="product-info">
+        <h3>Montre connectée</h3>
+        <p>Cardio, podomètre, notifications.</p>
+        <p><strong>Prix :</strong> 32 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Montre+connectée+32000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/phomemo-m04s-mini-imprimante.webp">
+      <div class="product-info">
+        <h3>Mini imprimante photo</h3>
+        <p>Bluetooth, rechargeable.</p>
+        <p><strong>Prix :</strong> 42 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Mini+imprimante+photo+42000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/R (3).jpeg">
+      <div class="product-info">
+        <h3>Clavier mécanique RGB</h3>
+        <p>USB, rétroéclairage personnalisable.</p>
+        <p><strong>Prix :</strong> 39 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Clavier+mécanique+RGB+39000">🛒 Commander</a>
+      </div>
+    </div>
+    <div class="product">
+      <img src="img/S9cbc536563194da7a57e50cf832852d94.webp">
+      <div class="product-info">
+        <h3>Routeur Wi-Fi portable</h3>
+        <p>4G LTE, batterie intégrée.</p>
+        <p><strong>Prix :</strong> 49 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Routeur+Wi-Fi+portable+49000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/71miyoGDikL._AC_SL1500_.jpg">
+      <div class="product-info">
+        <h3>Caméra de surveillance Wi-Fi</h3>
+        <p>Vision nocturne, détection de mouvement.</p>
+        <p><strong>Prix :</strong> 42 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Caméra+de+surveillance+Wi-Fi+42000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/7174yxyZeIL._AC_SL1500_.jpg">
+      <div class="product-info">
+        <h3>Mini projecteur LED</h3>
+        <p>HD 720p, HDMI/USB, compact.</p>
+        <p><strong>Prix :</strong> 85 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Mini+projecteur+LED+75000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/minifinker-thermometre-usb-thermometre-infrarouge.webp">
+      <div class="product-info">
+        <h3>Thermomètre digital USB</h3>
+        <p>Écran LCD, recharge rapide.</p>
+        <p><strong>Prix :</strong> 11 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Thermomètre+digital+USB+11000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/multiprise-intelligente-wifi-avec-3-prises-et-3-us.webp">
+      <div class="product-info">
+        <h3>Multiprise intelligente</h3>
+        <p>4 ports USB, protection surtension.</p>
+        <p><strong>Prix :</strong> 18 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Multiprise+intelligente+18000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/OIP (11).webp">
+      <div class="product-info">
+        <h3>Mini clavier sans fil</h3>
+        <p>Touchpad intégré, rechargeable.</p>
+        <p><strong>Prix :</strong> 17 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Mini+clavier+sans+fil+17000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/61wpGCayLmL.jpg">
+      <div class="product-info">
+        <h3>Lecteur MP3 Bluetooth</h3>
+        <p>Écran couleur, mémoire 16Go.</p>
+        <p><strong>Prix :</strong> 38 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Lecteur+MP3+Bluetooth+18000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/618+D58QxtL._AC_SL1500_.jpg">
+      <div class="product-info">
+        <h3>Récepteur Bluetooth audio</h3>
+        <p>Connexion jack 3.5mm.</p>
+        <p><strong>Prix :</strong> 35 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Récepteur+Bluetooth+audio+7000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/61uRIVFZ9nL._AC_SL1462_.jpg">
+      <div class="product-info">
+        <h3>Mini caméra espion Wi-Fi</h3>
+        <p>Détection de mouvement, vision nocturne.</p>
+        <p><strong>Prix :</strong> 29 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Mini+caméra+espion+Wi-Fi+29000">🛒 Commander</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="img/R (8).jpeg">
+      <div class="product-info">
+        <h3>Décodeur TNT HD</h3>
+        <p>Port USB, télécommande incluse.</p>
+        <p><strong>Prix :</strong> 23 000 FCFA</p>
+        <a href="https://wa.me/23799008396?text=Décodeur+TNT+HD+23000">🛒 Commander</a>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="footer">📍 Cameroun - Région du Sud, Kyé-Ossi | ☎️ +237 699 008 396</div>
+  <script>
+    document.getElementById("filtre").onchange = e => {
+      let v = e.target.value;
+      document.querySelectorAll(".product").forEach(p => {
+        let t = p.textContent.toLowerCase(), pr = parseInt(p.querySelector("p strong+ p").textContent.replace(/\D/g, "")) || 0;
+        p.style.display = (v === "tous" || (v === "prix-100" && pr < 100000) || (v === "prix-200" && pr < 200000) || t.includes(v)) ? "block" : "none";
+      });
+    };
+  </script>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <img id="popup-img" src="" alt="Produit">
+      <h3 id="popup-title"></h3>
+      <p id="popup-desc"></p>
+      <p id="popup-price"></p>
+      <a id="popup-link" href="#" target="_blank">🛒 Commander</a>
+    </div>
+  </div>
+
+  <script>
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popup-img");
+    const popupTitle = document.getElementById("popup-title");
+    const popupDesc = document.getElementById("popup-desc");
+    const popupPrice = document.getElementById("popup-price");
+    const popupLink = document.getElementById("popup-link");
+    const closeBtn = document.querySelector(".close");
+
+    document.querySelectorAll(".product").forEach(product => {
+      product.querySelector("img").addEventListener("click", () => {
+        const imgSrc = product.querySelector("img").src;
+        const title = product.querySelector("h3").textContent;
+        const desc = product.querySelectorAll("p")[0].textContent;
+        const price = product.querySelectorAll("p")[1].textContent;
+        const link = product.querySelector("a").href;
+
+        popupImg.src = imgSrc;
+        popupTitle.textContent = title;
+        popupDesc.textContent = desc;
+        popupPrice.textContent = price;
+        popupLink.href = link;
+
+        popup.style.display = "flex";
+      });
+    });
+
+    closeBtn.onclick = () => popup.style.display = "none";
+    window.onclick = e => { if (e.target === popup) popup.style.display = "none"; };
+  </script>
+
+</body>
+
+</html>

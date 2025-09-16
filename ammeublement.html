@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Maison Fonfort - Bureaux</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #1f1f2e;
+      color: #f0f0f0;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar {
+      background: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    .navbar .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #00ffff;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+    }
+
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: .3s;
+      font-weight: 600;
+    }
+
+    .navbar ul li a:hover {
+      background: #00ffff;
+      color: #000;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+
+    .hero h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .products,
+    .products+.products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+    }
+
+    .product {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 255, 255, .2);
+      transition: .3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 16px rgba(0, 255, 255, .4);
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .product-info h3 {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .product-info p {
+      margin: 5px 0;
+    }
+
+    .product-info a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: .3s;
+    }
+
+    .product-info a:hover {
+      background: #fff;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .product {
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1><a href="Home.html" style="text-decoration: none; color: white;">MAISON CONFORT D'ORIGINE</a></h1>
+    <p>Mobilier de bureau élégant et fonctionnel</p>
+  </header>
+
+  <div class="navbar">
+    <div class="logo">🪑 Ammeublement</div>
+    <ul>
+      <li><a href="electro.html">Électroménager</a></li>
+      <li><a href="bureau.html">Bureaux</a></li>
+      <li><a href="electronik.html">Électronique</a></li>
+      <li><a href="info.html">Informatique</a></li>
+      <li><a href="bureau.html">Matériel de bureau</a></li>
+      <li><a href="papeterie.html">Papeterie</a></li>
+    </ul>
+  </div>
+
+  <div class="hero">
+    <h2>Nos SAlons</h2>
+    <p>Confort, design et efficacité pour vos Salles de séjours</p>
+  </div>
+
+  <!-- Ligne 1 : bureau élargi -->
+  <div class="products">
+    <div class="product" style="width:900px">
+      <img src="img/images/Salons/Copilot_20250913_130415.png" alt="Table Scandinave">
+      <div class="product-info">
+        <h3>Salon Louis XIV 7 places</h3>
+        <p>Bois clair, pieds métal dorés</p>
+        <p><strong>Prix :</strong> &nbsp;1455 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ligne 2 : deux bureaux élargis -->
+  <div class="products">
+    <div class="product" style="width:550px">
+      <img src="img/images/Salons/Copilot_20250913_131048.png" alt="Table Compacte">
+      <div class="product-info">
+        <h3>Salon Capitoné 2 tons 6 places</h3>
+        <p>Finition chêne, blanc-bleu</p>
+        <p><strong>Prix :</strong> &nbsp;765 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+    <div class="product" style="width:550px">
+      <img src="img/images/Salons/BCO.1e3d57d8-56a5-4c77-8477-6b5dd881240c.png" alt="Table Minimaliste">
+      <div class="product-info">
+        <h3>Salon en cuir</h3>
+        <p>Structure bois renforcé</p>
+        <p><strong>Prix :</strong> &nbsp;1170 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+  </div>
+  <div class="products">
+    <div class="product" style="width:550px">
+      <img src="img/images/Salons/BCO.e0521725-36d1-4505-a398-28b7e9eb9ded.png" alt="Table Compacte">
+      <div class="product-info">
+        <h3>Salon d'angle gris 6 places</h3>
+        <p>Finition bois, velour</p>
+        <p><strong>Prix :</strong> &nbsp;665 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+    <div class="product" style="width:550px">
+      <img src="img/images/Salons/BCO.2a201677-3727-4cc5-9d0c-b48b3cd521e5.png" alt="Table Minimaliste">
+      <div class="product-info">
+        <h3>Salon d"Angle Capitoné 6 places</h3>
+        <p>Structure bois renforcé</p>
+        <p><strong>Prix :</strong> &nbsp;770 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ligne 3 : trois bureaux -->
+  <div class="products">
+    <div class="product" style="width:300px">
+      <img src="img/images/Salons/BCO.8ae2139b-d992-4d18-bbe8-94296fd1d9bc.png" alt="Table Industrielle">
+      <div class="product-info">
+        <h3>Salon capitoné velou gris sombre</h3>
+        <p>Bois brut et velour</p>
+        <p><strong>Prix :</strong> &nbsp;785 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+    <div class="product" style="width:300px">
+      <img src="img/images/Salons/BCO.bfc7b016-4582-44df-84f7-84eb2ffa34cc.png" alt="Table Élégante">
+      <div class="product-info">
+        <h3>Salon capitoné velou vert</h3>
+        <p>Bois brut et velour</p>
+        <p><strong>Prix :</strong> &nbsp;795 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+    <div class="product" style="width:300px">
+      <img src="img/images/Salons/Copilot_20250913_130927.png" alt="Table Fonctionnelle">
+      <div class="product-info">
+        <h3>Salon en cara capitoné&nbsp;</h3>
+        <p>pieds métalique, bois foncé</p>
+        <p><strong>Prix :</strong> &nbsp;880 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h2>Nos Salles a Manger</h2>
+    <p>Ergonomie, confort et style pour vos moments en famille</p>
+  </div>
+
+  <div class="products">
+    <!-- Chaise 1 -->
+    <div class="product">
+      <img src="img/images/SALLE A MANGER/810x1080/IMG_2069.JPG" alt="Chaise Ergonomique">
+      <div class="product-info">
+        <h3>salle a manger 4 places</h3>
+        <p>Support métalique, mabre</p>
+        <p><strong>Prix :</strong> &nbsp;205 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+
+    <!-- Chaise 2 -->
+    <div class="product">
+      <img src="img/images/SALLE A MANGER/810x1080/IMG_2150.JPG" alt="Chaise Classique">
+      <div class="product-info">
+        <h3>salle a manger 4 places</h3>
+        <p>Support métalique, mabre</p>
+        <p><strong>Prix :</strong> &nbsp;205 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+
+    <!-- Chaise 3 -->
+    <div class="product">
+      <img src="img/images/SALLE A MANGER/IMG_2026.JPG" alt="Chaise Design">
+      <div class="product-info">
+        <h3>Salle a manger 4 places</h3>
+        <p>Style moderne, pieds métal</p>
+        <p><strong>Prix :</strong> &nbsp;190 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+
+    <!-- Chaise 4 -->
+    <div class="product">
+      <img src="img/images/SALLE A MANGER/810x1080/IMG_2089.JPG" alt="Chaise Pivotante">
+      <div class="product-info">
+        <h3>Salle a manger 6 places&nbsp;</h3>
+        <p>table noi-métal, chaise acier cuir&nbsp;&nbsp;</p>
+        <p><strong>Prix :</strong> 235 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+
+    <!-- Chaise 5 -->
+    <div class="product">
+      <img src="img/images/SALLE A MANGER/810x1080/IMG_2036.JPG" alt="Chaise Luxe">
+      <div class="product-info">
+        <h3>Salle a manger 6 places&nbsp;</h3>
+        <p>vitre blindé pieds acier dorés</p>
+        <p><strong>Prix :</strong> &nbsp; 255 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+
+    <!-- Chaise 6 -->
+    <div class="product">
+      <img src="img/images/SALLE A MANGER/810x1080/IMG_2059.JPG" alt="Chaise Compacte">
+      <div class="product-info">
+        <h3>Salle a manger 6 places</h3>
+        <p>Simili cuir, accoudoirs réglables</p>
+        <p><strong>Prix :</strong> 285 000 FCFA</p>
+        <a href="#" class="whatsapp">🛒 Commander</a>
+      </div>
+    </div>
+  </div>
+  <!-- autres chaises… identique -->
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Maison Fonfort - Tous droits réservés | 📞 +237 699 00 83 96
+  </div>
+
+  <!-- Script qui adapte automatiquement chaque lien WhatsApp -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.product').forEach(prod => {
+        const nameEl = prod.querySelector('.product-info h3');
+        const priceEl = prod.querySelector('.product-info p strong');
+        const link = prod.querySelector('a.whatsapp');
+        if (nameEl && priceEl && link) {
+          // Récupère le nom et le prix sans le label "Prix :"
+          const name = nameEl.textContent.trim();
+          const price = priceEl.parentElement.textContent.replace(/Prix\s*:\s*/, '').trim();
+          const msg = `Bonjour, je suis intéressé par ${name} à ${price}`;
+          link.href = 'https://wa.me/237699008396?text=' + encodeURIComponent(msg);
+        }
+      });
+    });
+
+    document.querySelectorAll('.product').forEach(produit => {
+      const nom = produit.querySelector('h3')?.textContent.trim();
+      const prixP = Array.from(produit.querySelectorAll('p'))
+        .find(p => p.textContent.includes('Prix'));
+      const prixTexte = prixP?.textContent.replace(/Prix\s*:\s*/i, '').trim();
+      const numero = "23799008396";
+      const message = `Je souhaite commander le produit suivant : ${nom} au prix de ${prixTexte}`;
+      const lien = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
+      const bouton = produit.querySelector('.btn-whatsapp');
+      if (bouton) bouton.href = lien;
+    });
+  </script>
+</body>
+
+</html>
